@@ -23,10 +23,10 @@ const createAdmin = async () => {
       isVerified: true,
     });
 
-    console.log('✅ Admin criado:', admin.email);
+    console.log('Admin criado:', admin.email);
     process.exit(0);
   } catch (err) {
-    console.error('❌ Erro:', err.message);
+    console.error('Erro:', err.message);
     process.exit(1);
   }
 };

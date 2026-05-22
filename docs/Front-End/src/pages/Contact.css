@@ -1,0 +1,106 @@
+/* ===== CONTATO ===== */
+.contato__page {
+  min-height: 100vh;
+  background-color: #f4f4f5;
+  padding-bottom: 4rem;
+}
+
+.contato__header {
+  background-color: #ffffff;
+  padding: 2.5rem 8rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.contato__header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #18181b;
+  margin-bottom: 0.3rem;
+}
+
+.contato__header p {
+  font-size: 0.95rem;
+  color: #71717a;
+}
+
+.contato__container {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* ===== INFO ===== */
+.contato__info {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e4e4e7;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contato__info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contato__info__item i {
+  font-size: 1.2rem;
+  color: #16a34a;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.contato__info__item h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #18181b;
+  margin: 0 0 0.2rem;
+}
+
+.contato__info__item p {
+  font-size: 0.85rem;
+  color: #71717a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== FORM ===== */
+.contato__form {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e4e4e7;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.contato__form .btn__primary {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.contato__aviso {
+  font-size: 0.78rem;
+  color: #a1a1aa;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}

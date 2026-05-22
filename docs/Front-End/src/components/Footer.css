@@ -1,0 +1,55 @@
+.footer {
+  background-color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 50px 8rem 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  flex-wrap: wrap;
+  gap: 25px;
+  color: #2c2c2c;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer h1 {
+  font-size: 20px;
+  color: #0c3b2e;
+  font-family: "Playfair Display";
+  font-weight: 600;
+}
+
+.footer h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: "Poppins";
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+  color: #3f3f46;
+}
+
+.footer li {
+  font-weight: 400;
+  font-family: "Poppins";
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.footer a {
+  color: #3f3f46;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #16a34a;
+}
+
+.nav__redes ul {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

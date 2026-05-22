@@ -1,0 +1,61 @@
+.embreve{
+    background-image: url("../assets/bgd.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    padding: 4rem 3rem 2rem ;
+}
+.embreve h2{
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #2f4a2f;
+    font-family: "Playfair Display";
+    margin-bottom: 16rem;
+}
+.embreve p{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #353535;
+    font-weight: 400;
+    font-family: "Poppins";
+    margin-bottom: 1rem;
+}
+.embreve span{
+    color: #015001;
+    font-weight: bold;
+}
+
+.btn_back {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    align-items: center;
+    background-color: #8b9a6b;
+    color: #fff;
+    padding: 14px 98px;
+    border-radius: 10rem;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+
+    width: fit-content;
+    margin: 0 auto;
+}
+.btn_back i{
+    width: 32px; 
+    height: 32px; 
+    border-radius: 50%; 
+    background-color: rgba(255, 255, 255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.btn_back:hover{
+    background-color: #75845a;
+    transform: translateY(-2px);
+}

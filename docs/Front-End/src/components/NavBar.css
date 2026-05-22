@@ -1,0 +1,30 @@
+.NavBar{
+    background-color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.366);
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 30px 60px 30px;
+}
+.NavBar ul{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    list-style: none;
+    padding: 3px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: "Poppins";
+}
+
+.NavBar h2{
+    font-size: 1.8rem;
+    color: #0c3b2e;
+    font-family: "Playfair Display";
+    font-weight: 600;
+}
+

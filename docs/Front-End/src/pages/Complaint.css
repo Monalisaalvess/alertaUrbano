@@ -1,0 +1,198 @@
+/* ===== RECLAMACOES PAGE ===== */
+.reclamacoes__page {
+  min-height: 100vh;
+  background-color: #f4f4f5;
+  padding-bottom: 4rem;
+}
+
+.reclamacoes__header {
+  background-color: #ffffff;
+  padding: 2.5rem 8rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.reclamacoes__header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #18181b;
+  margin-bottom: 0.3rem;
+}
+
+.reclamacoes__header p {
+  font-size: 0.95rem;
+  color: #71717a;
+}
+
+.reclamacoes__container {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+.reclamacoes__form {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  border: 1px solid #e4e4e7;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form__linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form__grupo textarea {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e4e4e7;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #18181b;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+  background-color: #fafafa;
+}
+
+.form__grupo textarea:focus {
+  border-color: #16a34a;
+  background-color: #ffffff;
+}
+
+.form__grupo select {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e4e4e7;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #18181b;
+  outline: none;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.form__grupo select:focus {
+  border-color: #16a34a;
+  background-color: #ffffff;
+}
+
+.form__contador {
+  font-size: 0.78rem;
+  color: #a1a1aa;
+  text-align: right;
+  margin-top: 0.2rem;
+}
+
+.form__erro {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.form__sucesso {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+/* ===== UPLOAD ===== */
+.upload__area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px dashed #d4d4d8;
+  border-radius: 10px;
+  padding: 2.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: #fafafa;
+}
+
+.upload__area:hover {
+  border-color: #16a34a;
+  background-color: #f0fdf4;
+}
+
+.upload__area i {
+  font-size: 2rem;
+  color: #a1a1aa;
+}
+
+.upload__area span {
+  font-size: 0.9rem;
+  color: #71717a;
+}
+
+.upload__info {
+  font-size: 0.78rem !important;
+  color: #a1a1aa !important;
+}
+
+.upload__preview {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 260px;
+}
+
+.upload__preview img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.upload__remover {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.upload__remover:hover {
+  background-color: #ef4444;
+}
+
+.reclamacoes__form .btn__primary {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.reclamacoes__form .btn__primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

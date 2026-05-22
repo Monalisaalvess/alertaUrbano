@@ -1,0 +1,50 @@
+.general__status {
+    padding: 4rem 8rem;
+    background-color: #f4f4f5;
+    
+}
+
+.general__status h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #18181b;
+    margin-bottom: 1.5rem;
+}
+
+.status__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.status__card {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+
+.status__card p {
+    font-size: 0.95rem;
+    color: #71717a;
+    font-weight: 500;
+    margin: 0;
+}
+
+.status__card h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.status__card--pendente  h3 { color: #f59e0b; }
+.status__card--analise   h3 { color: #3b82f6; }
+.status__card--resolvida h3 { color: #22c55e; }
+.status__card--duplicada h3 { color: #ef4444; }
