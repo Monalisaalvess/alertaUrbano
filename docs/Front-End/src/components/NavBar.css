@@ -1,9 +1,8 @@
 .NavBar{
-    background-color: #fff;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.366);
+    border-bottom: 1px solid rgba(9, 2, 77, 0.366);
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
@@ -23,8 +22,39 @@
 
 .NavBar h2{
     font-size: 1.8rem;
-    color: #0c3b2e;
+    color: #1541bb;
     font-family: "Playfair Display";
     font-weight: 600;
 }
 
+
+
+
+.NavBar ul li:hover{
+    color: #1541bb;
+    transform: translateY(-3px);
+}
+
+/* linha animada */
+.NavBar ul li::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0%;
+    height: 2px;
+    background: #1541bb;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.NavBar ul li:hover::after{
+    width: 100%;
+}
+
+.NavBar h2{
+    font-size: 1.8rem;
+    color: #1541bb;
+    font-family: "Playfair Display";
+    font-weight: 600;
+}

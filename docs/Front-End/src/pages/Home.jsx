@@ -12,22 +12,48 @@ const Home = () => {
 
     <div className='section__1'>
         <div className="section__text">
-        {/*  <span className="section__1__local">Crato, Ceará</span> */}
-          <h1>Sua voz <br/>
-            transforma a cidade.</h1>
+         <span className="section__sub">Sua cidade. Sua voz. Sua mudança</span> 
+          <h1>Sua <span className='sub'>voz</span><br/>
+              transforma a cidade.</h1>
           <p>
-            Registre problemas da sua rua e bairro.
-            Juntos, podemos construir um <span>Crato</span> melhor
-            para todos.
+            Encontre um problema na sua rua ou bairro <br/> e registre aqui. É rápido, simples e faz a cidade melhorar.
           </p>
-
+        <div className='btn'>
           <Link to='/complaint' className="btn__primary">Registrar reclamação</Link>
-
+          <Link to='/cardcComplaint' className="btn__secundary">Registrar reclamação</Link>
+        </div>
         </div>
 
         <div className="section__1__image">
           {/* ilustração da cidade aqui */}
         </div>
+      </div>
+
+      <div className="oqRegistrar">
+        <div>
+          <i className="fa-solid fa-lightbulb"></i>
+          <p>Iluminação</p>
+        </div>
+        <div>
+          <i className="fa-solid fa-road-circle-exclamation"></i>
+          <p>Buraco</p>
+        </div>
+        <div>
+          <i className="fa-solid fa-faucet-drip"></i>
+          <p>Falta de água</p>
+        </div>
+        <div>
+          <i className="fa-solid fa-trash-can"></i>
+          <p>Lixo acumulado</p>
+        </div>
+        <div>
+          <i className="fa-solid fa-car-burst"></i>
+          <p>Trânsito</p>
+        </div>
+        <div>
+          <i className="fa-solid fa-circle-exclamation"></i>
+          <p>Outro</p>
+        </div>  
       </div>
 
      <div className="mapa__container">
@@ -58,7 +84,6 @@ const Home = () => {
          </div>
 
         <div className="complaints__list">
-          {/* cards virão aqui quando integrar com a API */}
           <CardComplaint />
         </div>
 

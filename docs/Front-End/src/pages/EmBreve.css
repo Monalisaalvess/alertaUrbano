@@ -1,5 +1,5 @@
 .embreve{
-    background-image: url("../assets/bgd.png");
+    background-image: url("../assets/bgdd.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -10,20 +10,20 @@
     text-align: center;
     font-size: 4rem;
     font-weight: 700;
-    color: #2f4a2f;
+    color: #0c266d;
     font-family: "Playfair Display";
-    margin-bottom: 16rem;
+    margin-bottom: 20rem;
+    margin-top: 4rem;
 }
 .embreve p{
     text-align: center;
     font-size: 1.5rem;
-    color: #353535;
     font-weight: 400;
     font-family: "Poppins";
     margin-bottom: 1rem;
 }
 .embreve span{
-    color: #015001;
+    color: #0c266d;
     font-weight: bold;
 }
 
@@ -33,7 +33,7 @@
     text-align: center;
     font-size: 1.2rem;
     align-items: center;
-    background-color: #8b9a6b;
+    background-color: #031e68;
     color: #fff;
     padding: 14px 98px;
     border-radius: 10rem;
@@ -48,7 +48,7 @@
     width: 32px; 
     height: 32px; 
     border-radius: 50%; 
-    background-color: rgba(255, 255, 255,0.2);
+    background-color: rgba(196, 189, 233, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,6 +56,6 @@
 }
 
 .btn_back:hover{
-    background-color: #75845a;
+    background-color: #052887;
     transform: translateY(-2px);
 }
