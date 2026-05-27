@@ -19,15 +19,15 @@ export const AuthProvider = ({ children }) => {
     }, [])
     const login = (userData, UserToken)=>{
         setUser(userData)
-        setToken(userToken)
-        localStorage.setItem('alertaUrbano_token', userToken)
+        setToken(UserToken)
+        localStorage.setItem('alertaUrbano_token', UserToken)
         localStorage.setItem('alertaUrbano_user', JSON.stringify(userData))
     }
     const logout = () => {
         setUser(null)
         setToken(null)
-        localStorage.removeItem('cidadeviva_token')
-        localStorage.removeItem('cidadeviva_user')    
+        localStorage.removeItem('alertaUrbano_token')
+        localStorage.removeItem('alertaUrbano_user')    
     }
     const isAuthenticated = !!token
     const isAdmin = user?.role === 'admin'

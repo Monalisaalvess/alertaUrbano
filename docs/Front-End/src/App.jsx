@@ -9,6 +9,8 @@ import Complaint from './pages/Complaint'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import Contact from './pages/Contact'
+import Denuncias from './pages/Denuncias'
+import Denuncia from './pages/Denuncia'
 
 
 
@@ -25,6 +27,8 @@ function App() {
         <Route path='/contact'   element={<Contact/>  }/>
         <Route path='/Dashboard' element={<Dashboard/>}/>
         <Route path='/em-breve'  element={<EmBreve/>  }/>
+        <Route path='/Denuncias' element={<Denuncias/>}/>
+        <Route path='/denuncias/:id'element={<Denuncia/>}/>
      </Routes>
     <Footer/>
     </BrowserRouter>

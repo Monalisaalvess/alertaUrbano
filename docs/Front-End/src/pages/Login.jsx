@@ -1,7 +1,7 @@
 import   {useState}  from 'react'
 import {useNavigate} from 'react-router-dom'
 import    useAuth    from '../hooks/useAuth'
-import {authService} from '../Services/api'
+import {authService} from '../services/api'
 
 import './Login.css'
 
@@ -10,6 +10,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [  erro, setErro  ]   = useState('');
   const [sucesso, setSucesso] = useState('');
+  const [verSenha, setVerSenha] = useState(false);
+  const [verConfirmar, setVerConfirmar] = useState(false);
 
   const [formData, setFormData] = useState ({
     name:'', 
@@ -22,7 +24,7 @@ const Login = () => {
   const  navigate = useNavigate()
 
   const handleChange = (e)=> {
-    const{ name, value } = e.targer
+    const{ name, value } = e.target
       setFormData((prev) => ({...prev, [name]: value}))
       setErro('')
   }
@@ -49,6 +51,12 @@ const Login = () => {
     } finally {
       setLoading (false)
     }
+    const res = await authService.login({
+  email: formData.email,
+  password: formData.password,
+})
+console.log('Resposta:', res)
+console.log('Data:', res.data)
   };
 
   const handleRegister = async (e) => {
@@ -119,19 +127,49 @@ const Login = () => {
           </div>
 
           <div className='form__grupo'>
-            <label htmlFor='password'>Senha</label>
-            <input type='password' id='password' name='password'
-              value={formData.password} onChange={handleChange}
-              placeholder='••••••••' required />
+           <label htmlFor='password'>Senha</label>
+            <div className="input__senha">
+            <input 
+            type={verSenha ? 'text' : 'password'} 
+            id=  'password' 
+            name='password'
+              value={formData.password} 
+              onChange={handleChange}
+              placeholder='••••••••' 
+              required />
+              <button
+              type='button'
+              className='input__olho'
+              onClick={()=> setVerSenha(!verSenha)}>
+                <i className={`fa-regular ${verSenha ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+              </button>
+            </div>
           </div>
 
           {!isLogin && (
             <div className='form__grupo'>
               <label htmlFor='confirmPassword'>Confirmar senha</label>
-              <input type='password' id='confirmPassword' name='confirmPassword'
-                value={formData.confirmPassword} onChange={handleChange}
-                placeholder='••••••••' required />
+              <div className="input__senha">
+              <input 
+              type={ verConfirmar ? 'text' : 'password' }
+              id='confirmPassword' 
+              name='confirmPassword'
+              value={formData.confirmPassword} 
+              onChange={handleChange}
+              placeholder='••••••••' 
+              required /> 
+              <button 
+                type='button' 
+                className='input__olho' 
+                onClick={() => setVerConfirmar(!verConfirmar)}>
+               <i className={`fa-regular ${verConfirmar ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+              </button>
+              </div>
             </div>
+          )}
+
+          {isLogin && ( 
+            <a href = '#' className='login__esqueceu'> Esqueceu a senha? </a>
           )}
 
           <button type='submit' className='btn__primary' disabled={loading}>

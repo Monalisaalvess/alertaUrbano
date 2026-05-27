@@ -13,6 +13,7 @@ const { isAuthenticated, isAdmin, user } = useAuth()
       <ul>
         <li><Link to='/'>Inicio</Link></li>
         <li><Link to='/complaint'>Reclamações</Link></li>
+        <li><Link to='/Denuncias'>Denuncias</Link></li>
         <li><Link to='/contact'>Contato</Link></li>
 
         {isAdmin && (

@@ -45,8 +45,7 @@ const getStats = async (req, res) => {
     const total = await Report.countDocuments();
     const pendente = await Report.countDocuments({ status: 'pendente' });
     const em_analise = await Report.countDocuments({ status: 'em_analise' });
-    const resolvida = await Report.countDocuments({ status: 'resolvida' });
-    const duplicada = await Report.countDocuments({ status: 'duplicada' });
+    const resolvida = await Report.countDocuments({ status: 'resolvida' })
 
     const byCategory = await Report.aggregate([
       { $group: { _id: '$category', total: { $sum: 1 } } },
@@ -89,10 +88,14 @@ const getReportById = async (req, res) => {
 // POST
 const createReport = async (req, res) => {
   try {
-    const { title, description, category, address, neighborhood } = req.body;
+    console.log('Body:', req.body)
+    console.log('File:', req.file)
+    console.log('User:', req.user)
+
+    const { title, description, category, address, neighborhood } = req.body
 
     if (!req.file) {
-      return res.status(400).json({ error: 'Imagem é obrigatória' });
+      return res.status(400).json({ error: 'Imagem é obrigatória' })
     }
 
     const report = await Report.create({
