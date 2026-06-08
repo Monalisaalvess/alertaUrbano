@@ -1,14 +1,16 @@
 .general__status {
-    padding: 4rem 8rem;
-    background-color: #f4f4f5;
-    
+    padding: 2rem 15rem;
+    background-color: #fff;
+    border-top: 1px solid rgb(234, 234, 234);
 }
 
 .general__status h2 {
-    font-size: 1.8rem;
+    font-family: "Poppins";
+    text-align: center;
+    font-size: 1.9rem;
     font-weight: 700;
-    color: #18181b;
-    margin-bottom: 1.5rem;
+    color: hsl(0, 0%, 15%);
+    margin-bottom: 3rem;
 }
 
 .status__cards {
@@ -18,9 +20,9 @@
 }
 
 .status__card {
-    background-color: #ffffff;
-    border-radius: 6px;
-    padding: 1.8rem;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -7,7 +7,7 @@ const Contact = () => {
     const email = e.target.email.value
     const mensagem = e.target.mensagem.value
 
-    const mailto = `mailto:seuemail@gmail.com?subject=Contato CidadeViva - ${nome}&body=Nome: ${nome}%0AEmail: ${email}%0A%0AMensagem:%0A${mensagem}`
+    const mailto = `mailto:alertaurbanocrato@gmail.com?subject=Contato AlertaUrbano - ${nome}&body=Nome: ${nome}%0AEmail: ${email}%0A%0AMensagem:%0A${mensagem}`
 
     window.location.href = mailto
   }
@@ -27,7 +27,7 @@ const Contact = () => {
             <i className='fa-solid fa-envelope'></i>
             <div>
               <h4>Email</h4>
-              <p>Monalisasuporte@gmail.com</p>
+              <p>alertaurbanocrato@gmail.com</p>
             </div>
           </div>
 
@@ -43,7 +43,7 @@ const Contact = () => {
             <i className='fa-solid fa-circle-info'></i>
             <div>
               <h4>Sobre o projeto</h4>
-              <p>CidadeViva é um projeto de extensão universitária desenvolvido para a cidade do Crato — CE.</p>
+              <p>AlertaUrbano é um projeto de extensão universitária desenvolvido para a cidade do Crato CE.</p>
             </div>
           </div>
         </div>

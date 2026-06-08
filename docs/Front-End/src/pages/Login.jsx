@@ -2,7 +2,6 @@ import   {useState}  from 'react'
 import {useNavigate} from 'react-router-dom'
 import    useAuth    from '../hooks/useAuth'
 import {authService} from '../services/api'
-
 import './Login.css'
 
 const Login = () => {
@@ -40,33 +39,21 @@ const Login = () => {
         password: formData.password,
       })
       login(res.data.user, res.data.token)
-
-      if(res.data.user.role === 'admin') {
-        navigate('/dashboard')
-      }else{
-        navigate('/')
-      }
-    } catch (err) {
+      navigate(res.data.user.role === 'admin' ? '/dashboard' : '/')
+      } catch (err) {
         setErro(err.response?.data?.error || 'Erro ao fazer login')
-    } finally {
-      setLoading (false)
+      } finally {
+        setLoading (false)
+      }
     }
-    const res = await authService.login({
-  email: formData.email,
-  password: formData.password,
-})
-console.log('Resposta:', res)
-console.log('Data:', res.data)
-  };
-
-  const handleRegister = async (e) => {
-    e.preventDefault()
-    setErro('')
-      if(formData.password !== formData.confirmPassword){
-        setErro('As senhas não coincidem')
-        return
+    const handleRegister = async (e) => {
+      e.preventDefault()
+       setErro('')
+        if(formData.password !== formData.confirmPassword){
+          setErro('As senhas não coincidem')
+          return
     }
-    setLoading(true)
+      setLoading(true)
 
     try {
       await authService.register({
@@ -74,14 +61,21 @@ console.log('Data:', res.data)
         email: formData.email,
         password: formData.password,
       })
+
       setSucesso('Cadastro realizado! Verifique seu email para ativar sua conta.')
       setFormData({name:'', email:'', password:'', confirmPassword: ''})
+
     } catch (err) {
       setErro(err.response?.data?.error || 'Erro ao cadastrar')
     } finally{
       setLoading(false)
     }
   }
+    const alternarModo = () => {
+      setIsLogin((prev) => !prev)
+      setErro('')
+      setSucesso('')
+    }
 
   return (  
   <div className='login__home'>
@@ -169,7 +163,11 @@ console.log('Data:', res.data)
           )}
 
           {isLogin && ( 
-            <a href = '#' className='login__esqueceu'> Esqueceu a senha? </a>
+            <button 
+              type='button' 
+              className='login__esqueceu'> 
+                Esqueceu a senha? 
+            </button>
           )}
 
           <button type='submit' className='btn__primary' disabled={loading}>
@@ -179,7 +177,8 @@ console.log('Data:', res.data)
 
         {!isLogin && (
           <p className='login__aviso'>
-            <i className='fa-solid fa-envelope'></i> Enviaremos um email de confirmação para o endereço informado.
+            <i className='fa-solid fa-envelope'></i> 
+            Enviaremos um email de confirmação para o endereço informado.
           </p>
         )}
 

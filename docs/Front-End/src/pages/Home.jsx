@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom';
+import {useState} from 'react';
+import {Link}     from 'react-router-dom';
 
 import GeneralStatus    from '../components/GeneralStatus';
 import    MapView       from '../components/MapView';
@@ -6,28 +7,41 @@ import  CardComplaint   from '../components/CardComplaint';
 
 import './Home.css';
 
+const CATEGORIAS = [
+  { icone: 'fa-lightbulb',            label: 'Iluminação'     },
+  { icone: 'fa-road-circle-exclamation', label: 'Buraco'      },
+  { icone: 'fa-faucet-drip',          label: 'Falta de água'  },
+  { icone: 'fa-trash-can',            label: 'Lixo acumulado' },
+  { icone: 'fa-car-burst',            label: 'Trânsito'       },
+  { icone: 'fa-circle-exclamation',   label: 'Outro'          },
+]
+ 
+const LEGENDA_MAPA = [
+  { classe: 'dot--pendente', label: 'Pendentes'  },
+  { classe: 'dot--analise',  label: 'Em análise' },
+  { classe: 'dot--resolvida',label: 'Resolvidas' },
+]
+
+const TABS = ['Mais curtidas', 'Mais republicadas']
+
 const Home = () => {
+  const [ tabAtiva, setTabAtiva] = useState(0)
   return (
     <div className='home'>
-
-    <div className='section__1'>
-        <div className="section__text">
-         <span className="section__sub">Sua cidade. Sua voz. Sua mudança</span> 
+      <section className='section__1'>
+        <div className="section__text"> 
           <h1>Sua <span className='sub'>voz</span><br/>
-              transforma a cidade.</h1>
+              transforma a cidade.
+          </h1>
           <p>
-            Encontre um problema na sua rua ou bairro <br/> e registre aqui. É rápido, simples e faz a cidade melhorar.
+            Encontre um problema na sua rua ou bairro e registre aqui. É rápido, simples e faz a cidade melhorar.
           </p>
         <div className='btn'>
           <Link to='/complaint' className="btn__primary">Registrar reclamação</Link>
-          <Link to='/cardcComplaint' className="btn__secundary">Registrar reclamação</Link>
+          <Link to='/denuncias' className="btn__secundary">Ver reclamações</Link>
         </div>
-        </div>
-
-        <div className="section__1__image">
-          {/* ilustração da cidade aqui */}
-        </div>
-      </div>
+       </div>
+      </section>
 
       <div className="oqRegistrar">
         <div>
@@ -60,34 +74,44 @@ const Home = () => {
         <h2>Mapa de reclamações</h2>
          <div className="mapa__wrapper">
 
+        <div className='mapa__legenda'>
+          <ul>
+            {LEGENDA_MAPA.map(({ classe, label }) => (
+              <li key={label}>
+                <span className={`dot ${classe}`}></span> {label}
+              </li>
+              ))}
+          </ul>
+        </div>
+
           <div className="mapa">
             <MapView/>
           </div>
 
-          <div className='mapa__legenda'>
-            <ul>
-              <li><span className="dot dot--pendente"></span> Pendentes</li>
-              <li><span className="dot dot--analise"></span> Em análise</li>
-              <li><span className="dot dot--resolvida"></span> Resolvidas</li>
-            </ul>
-          </div>
 
          </div>
       </div>
     
-      <div className='complaints'>
+      <section className='complaints'>
         <h2>Reclamações em destaque</h2>
          
-         <div className="complaints__tabs">
-          <button className="tab tab--active">Mais curtidas</button>
-          <button className="tab">Mais republicadas</button>
-         </div>
-
-        <div className="complaints__list">
-          <CardComplaint />
+         <div className='complaints__tabs'>
+          {TABS.map((tab, i) => (
+            <button
+              key={tab}
+              className={`tab ${tabAtiva === i ? 'tab--active' : ''}`}
+              onClick={() => setTabAtiva(i)}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
 
-      </div>
+        <div className="complaints__list">
+          <CardComplaint tab={tabAtiva}/>
+        </div>
+
+      </section>
 
           <GeneralStatus/>
 

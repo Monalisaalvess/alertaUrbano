@@ -5,6 +5,10 @@
     background-position: center;
     height: 90vh;
     padding: 4rem 3rem 2rem ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .embreve h2{
     text-align: center;
@@ -13,7 +17,7 @@
     color: #0c266d;
     font-family: "Playfair Display";
     margin-bottom: 20rem;
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 .embreve p{
     text-align: center;
@@ -28,21 +32,21 @@
 }
 
 .btn_back {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.2rem;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
     background-color: #031e68;
     color: #fff;
-    padding: 14px 98px;
-    border-radius: 10rem;
-    gap: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: 0.3s;
-
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 14px 40px;
+    border-radius: 50px;
+    text-decoration: none;
     width: fit-content;
     margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .btn_back i{
     width: 32px; 
@@ -58,4 +62,29 @@
 .btn_back:hover{
     background-color: #052887;
     transform: translateY(-2px);
+}
+
+.btn_back:active {
+  transform: translateY(0);
+}
+  
+@media (max-width: 768px) {
+  .embreve {
+    height: auto;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+  }
+ 
+  .embreve h2 {
+    font-size: 2.2rem;
+  }
+ 
+  .embreve p {
+    font-size: 1rem;
+  }
+ 
+  .btn_back {
+    width: 100%;
+    justify-content: center;
+  }
 }

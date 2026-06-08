@@ -1,6 +1,11 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useCallback } from 'react'
 
 export const AuthContext = createContext()
+
+const   STORAGE_KEYS = {
+    token:'alertaUrbano',
+    user :'alertaUrbano',
+}
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
@@ -8,27 +13,36 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        const storedToken = localStorage.getItem('alertaUrbano_token')
-        const storedUser  = localStorage.getItem('alertaUrbano_user')
+        try{
+        const storedToken = localStorage.getItem('STORAGE_KEYS_token')
+        const storedUser  = localStorage.getItem('STORAGE_KEYS_user')
 
         if (storedToken && storedUser) {
             setToken(storedToken)
             setUser(JSON.parse(storedUser))
         }
+        }catch (err) {
+            console.error('Erro ao restaurar sessão:', err)
+            localStorage.removeItem(STORAGE_KEYS.token)
+            localStorage.removeItem(STORAGE_KEYS.user)
+        } finally {
         setLoading(false)
+        }
+        }, [])
+        
+      
+    const login = useCallback((userData, userToken) => {
+        setUser (userData)
+        setToken(userToken)
+        localStorage.setItem('STORAGE_KEYS.token', userToken)
+        localStorage.setItem('STORAGE_KEYS.user', JSON.stringify(userData))
     }, [])
-    const login = (userData, UserToken)=>{
-        setUser(userData)
-        setToken(UserToken)
-        localStorage.setItem('alertaUrbano_token', UserToken)
-        localStorage.setItem('alertaUrbano_user', JSON.stringify(userData))
-    }
-    const logout = () => {
+    const logout = useCallback (() => {
         setUser(null)
         setToken(null)
-        localStorage.removeItem('alertaUrbano_token')
-        localStorage.removeItem('alertaUrbano_user')    
-    }
+        localStorage.removeItem('STORAGE_KEYS.token')
+        localStorage.removeItem('STORAGE_KEYS.user')    
+    }, [] )
     const isAuthenticated = !!token
     const isAdmin = user?.role === 'admin'
 

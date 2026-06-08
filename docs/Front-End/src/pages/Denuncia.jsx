@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { reportService } from '../services/api'
 import useAuth from '../hooks/useAuth'
 
-const statusConfig = {
-  pendente:   { label: 'Pendente',   cor: '#f59e0b', bg: '#fffbeb' },
-  em_analise: { label: 'Em análise', cor: '#3b82f6', bg: '#eff6ff' },
-  resolvida:  { label: 'Resolvida',  cor: '#22c55e', bg: '#f0fdf4' },
-  duplicada:  { label: 'Duplicada',  cor: '#ef4444', bg: '#fef2f2' },
+const STATUS_CONFIG = {
+  pendente:   { label: 'Pendente',   cor: '#ffba00', bg: '#fffbeb' },
+  em_analise: { label: 'Em análise', cor: '#0c266d', bg: '#eff6ff' },
+  resolvida:  { label: 'Resolvida',  cor: '#0c3b2e', bg: '#f0fdf4' },
 }
 
-const categoriaIcone = {
+const CATEGORIA_ICONE = {
   buraco:     'fa-road-circle-exclamation',
   iluminacao: 'fa-lightbulb',
   lixo:       'fa-trash-can',
@@ -19,7 +18,7 @@ const categoriaIcone = {
   outro:      'fa-circle-exclamation',
 }
 
-const categoriaLabel = {
+const CATEGORIA_LABEL = {
   buraco:     'Buraco',
   iluminacao: 'Iluminação',
   lixo:       'Lixo',
@@ -29,33 +28,38 @@ const categoriaLabel = {
 }
 
 const Denuncia = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
+  const { id }            = useParams()
+  const navigate          = useNavigate()
   const { isAuthenticated } = useAuth()
 
-  const [denuncia, setDenuncia] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [curtido, setCurtido] = useState(false)
-  const [totalLikes, setTotalLikes] = useState(0)
+  const [denuncia,     setDenuncia]     = useState(null)
+  const [loading,      setLoading]      = useState(true)
+  const [erro,         setErro]         = useState(null)
+  const [curtido,      setCurtido]      = useState(false)
+  const [totalLikes,   setTotalLikes]   = useState(0)
   const [totalReposts, setTotalReposts] = useState(0)
 
-  useEffect(() => {
-    carregarDenuncia()
-  }, [id])
-
-  const carregarDenuncia = async () => {
+  const carregarDenuncia = useCallback(async () => {
     try {
       const res = await reportService.getById(id)
       setDenuncia(res.data)
       setTotalLikes(res.data.likes)
       setTotalReposts(res.data.reposts)
+    
+      setErro(null)
     } catch (err) {
+      
       console.error('Erro ao carregar denúncia:', err)
+      setErro('Não foi possível carregar a denúncia. Tente novamente.')
     } finally {
       setLoading(false)
     }
-  }
+  }, [id])
 
+  useEffect(() => {
+    carregarDenuncia()
+  }, [carregarDenuncia])
+  
   const handleCurtir = async () => {
     if (!isAuthenticated) {
       navigate('/login')
@@ -89,19 +93,27 @@ const Denuncia = () => {
     </div>
   )
 
+  if (erro) return (
+    <div className='denuncia__loading'>
+      <i className='fa-solid fa-triangle-exclamation'></i> {erro}
+    </div>
+  )
+
   if (!denuncia) return (
     <div className='denuncia__loading'>
       <i className='fa-solid fa-triangle-exclamation'></i> Denúncia não encontrada.
     </div>
   )
 
-  const status = statusConfig[denuncia.status] || statusConfig.pendente
-  const icone = categoriaIcone[denuncia.category] || 'fa-circle-exclamation'
-  const data = new Date(denuncia.createdAt).toLocaleDateString('pt-BR')
+  const status = STATUS_CONFIG[denuncia.status] || STATUS_CONFIG.pendente
+  const icone  = CATEGORIA_ICONE[denuncia.category] || 'fa-circle-exclamation'
+  const label  = CATEGORIA_LABEL[denuncia.category] || 'Outro'
+  const data   = new Date(denuncia.createdAt).toLocaleDateString('pt-BR')
 
   return (
     <div className='denuncia__page'>
 
+    
       <div className='denuncia__voltar'>
         <button onClick={() => navigate('/denuncias')}>
           <i className='fa-solid fa-arrow-left'></i> Voltar
@@ -109,19 +121,18 @@ const Denuncia = () => {
       </div>
 
       <div className='denuncia__container'>
-
-        {/* Imagem */}
         <div className='denuncia__imagem'>
           <img src={denuncia.image} alt={denuncia.title} />
         </div>
 
-        {/* Conteúdo */}
+
         <div className='denuncia__conteudo'>
 
           <div className='denuncia__topo'>
             <span className='denuncia__categoria'>
               <i className={`fa-solid ${icone}`}></i>
-              {categoriaLabel[denuncia.category]}
+      
+              {label}
             </span>
             <span
               className='denuncia__status'
@@ -135,32 +146,35 @@ const Denuncia = () => {
 
           <p className='denuncia__descricao'>{denuncia.description}</p>
 
+
           <div className='denuncia__infos'>
+
             <div className='denuncia__info__item'>
-              <i className='fa-solid fa-location-dot'></i>
               <div>
                 <span className='denuncia__info__label'>Localização</span>
                 <span className='denuncia__info__valor'>
-                  {denuncia.location?.address}, {denuncia.location?.neighborhood}
+
+                  {denuncia.location?.address ?? '—'}, {denuncia.location?.neighborhood ?? '—'}
                 </span>
               </div>
             </div>
 
             <div className='denuncia__info__item'>
-              <i className='fa-regular fa-user'></i>
               <div>
                 <span className='denuncia__info__label'>Registrado por</span>
-                <span className='denuncia__info__valor'>{denuncia.userId?.name}</span>
+                <span className='denuncia__info__valor'>
+                  {denuncia.userId?.name ?? 'Usuário não identificado'}
+                </span>
               </div>
             </div>
 
             <div className='denuncia__info__item'>
-              <i className='fa-regular fa-calendar'></i>
               <div>
                 <span className='denuncia__info__label'>Data</span>
                 <span className='denuncia__info__valor'>{data}</span>
               </div>
             </div>
+
           </div>
 
           {denuncia.adminComment && (
@@ -177,12 +191,17 @@ const Denuncia = () => {
             <button
               className={`denuncia__btn ${curtido ? 'denuncia__btn--curtido' : ''}`}
               onClick={handleCurtir}
+              aria-label={curtido ? 'Remover curtida' : 'Curtir denúncia'}
             >
               <i className={`fa-${curtido ? 'solid' : 'regular'} fa-heart`}></i>
               {totalLikes} {totalLikes === 1 ? 'curtida' : 'curtidas'}
             </button>
 
-            <button className='denuncia__btn' onClick={handleRepostar}>
+            <button
+              className='denuncia__btn'
+              onClick={handleRepostar}
+              aria-label='Republicar denúncia'
+            >
               <i className='fa-solid fa-retweet'></i>
               {totalReposts} {totalReposts === 1 ? 'republicação' : 'republicações'}
             </button>

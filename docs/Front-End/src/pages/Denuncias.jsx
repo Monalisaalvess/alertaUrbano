@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { reportService } from '../services/api'
 
-const statusConfig = {
-  pendente:   { label: 'Pendente',   cor: '#f59e0b', bg: '#fffbeb' },
-  em_analise: { label: 'Em análise', cor: '#3b82f6', bg: '#eff6ff' },
-  resolvida:  { label: 'Resolvida',  cor: '#22c55e', bg: '#f0fdf4' },
+import './Denuncias.css'
+
+const STATUS_CONFIG = {
+  pendente:   { label: 'Pendente',   cor: '#ffba00', bg: '#fffbeb' },
+  em_analise: { label: 'Em análise', cor: '#0c266d', bg: '#eff6ff' },
+  resolvida:  { label: 'Resolvida',  cor: '#0c3b2e', bg: '#f0fdf4' },
 }
 
-const categoriaIcone = {
+const CATEGORIA_ICONE = {
   buraco:     'fa-road-circle-exclamation',
   iluminacao: 'fa-lightbulb',
   lixo:       'fa-trash-can',
@@ -17,7 +19,7 @@ const categoriaIcone = {
   outro:      'fa-circle-exclamation',
 }
 
-const categoriaLabel = {
+const CATEGORIA_LABEL = {
   buraco:     'Buraco',
   iluminacao: 'Iluminação',
   lixo:       'Lixo',
@@ -26,55 +28,120 @@ const categoriaLabel = {
   outro:      'Outro',
 }
 
+const FILTROS_INICIAIS = { status: '', category: '', neighborhood: '' }
+
+const DenunciaCard = ({ denuncia, onClick }) => {
+  const status = STATUS_CONFIG[denuncia.status] || STATUS_CONFIG.pendente
+  const icone  = CATEGORIA_ICONE[denuncia.category] || 'fa-circle-exclamation'
+  const label  = CATEGORIA_LABEL[denuncia.category] || 'Outro'
+  const data   = new Date(denuncia.createdAt).toLocaleDateString('pt-BR')
+
+  return (
+    <div
+      className='denuncias__card'
+      onClick={onClick}
+
+      role='button'
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+      aria-label={`Ver denúncia: ${denuncia.title}`}
+    >
+      <div className='denuncias__card__img'>
+        <img src={denuncia.image} alt={denuncia.title} />
+        <span
+          className='denuncias__card__status'
+          style={{ color: status.cor, backgroundColor: status.bg }}
+        >
+          {status.label}
+        </span>
+      </div>
+
+      <div className='denuncias__card__body'>
+        <div className='denuncias__card__categoria'>
+          <i className={`fa-solid ${icone}`}></i>
+          <span>{label}</span>
+        </div>
+
+        <h3>{denuncia.title}</h3>
+        <p>{denuncia.description}</p>
+
+        <div className='denuncias__card__meta'>
+          <span>
+            <i className='fa-solid fa-location-dot'></i>{' '}
+            {denuncia.location?.neighborhood ?? '—'}
+          </span>
+          <span>
+            <i className='fa-regular fa-calendar'></i> {data}
+          </span>
+        </div>
+
+        <div className='denuncias__card__footer'>
+         
+          <span>
+            <i className='fa-regular fa-user'></i>{' '}
+            {denuncia.userId?.name ?? 'Anônimo'}
+          </span>
+          <div className='denuncias__card__acoes'>
+            <span><i className='fa-regular fa-heart'></i> {denuncia.likes}</span>
+            <span><i className='fa-solid fa-retweet'></i> {denuncia.reposts}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const Denuncias = () => {
   const navigate = useNavigate()
+
   const [denuncias, setDenuncias] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [filtros, setFiltros] = useState({ status: '', category: '', neighborhood: '' })
+  const [loading,   setLoading]   = useState(true)
+  const [erro,      setErro]      = useState(null)
+  const [filtros,   setFiltros]   = useState(FILTROS_INICIAIS)
 
-  useEffect(() => {
-    carregarDenuncias()
-  }, [filtros])
-
-  const carregarDenuncias = async () => {
+  const carregarDenuncias = useCallback(async () => {
     setLoading(true)
+    setErro(null)
     try {
       const res = await reportService.getAll(filtros)
       setDenuncias(res.data)
     } catch (err) {
       console.error('Erro ao carregar denúncias:', err)
+      setErro('Não foi possível carregar as denúncias. Tente novamente.')
     } finally {
       setLoading(false)
     }
-  }
+  }, [filtros])
+
+  useEffect(() => {
+    carregarDenuncias()
+  }, [carregarDenuncias])
 
   const handleFiltro = (e) => {
     const { name, value } = e.target
     setFiltros((prev) => ({ ...prev, [name]: value }))
   }
 
-  const limparFiltros = () => {
-    setFiltros({ status: '', category: '', neighborhood: '' })
-  }
+  const limparFiltros = () => setFiltros(FILTROS_INICIAIS)
+
+  const temFiltroAtivo = Object.values(filtros).some(Boolean)
 
   return (
     <div className='denuncias__page'>
 
       <div className='denuncias__header'>
-        <div>
-          <h1>Denúncias</h1>
-          <p>Veja todos os problemas registrados pela população do Crato.</p>
-        </div>
+        <h1>Denúncias</h1>
+        <p>Veja todos os problemas registrados pela população do Crato.</p>
       </div>
 
-      {/* Filtros */}
+    
       <div className='denuncias__filtros'>
         <select name='status' value={filtros.status} onChange={handleFiltro}>
           <option value=''>Todos os status</option>
           <option value='pendente'>Pendente</option>
           <option value='em_analise'>Em análise</option>
           <option value='resolvida'>Resolvida</option>
-          <option value='duplicada'>Duplicada</option>
+
         </select>
 
         <select name='category' value={filtros.category} onChange={handleFiltro}>
@@ -95,17 +162,21 @@ const Denuncias = () => {
           placeholder='Filtrar por bairro...'
         />
 
-        {(filtros.status || filtros.category || filtros.neighborhood) && (
+        {temFiltroAtivo && (
           <button className='denuncias__limpar' onClick={limparFiltros}>
             <i className='fa-solid fa-xmark'></i> Limpar filtros
           </button>
         )}
       </div>
 
-      {/* Lista */}
       {loading ? (
         <div className='denuncias__loading'>
           <i className='fa-solid fa-spinner fa-spin'></i> Carregando denúncias...
+        </div>
+      ) : erro ? (
+        <div className='denuncias__vazio'>
+          <i className='fa-solid fa-triangle-exclamation'></i>
+          <p>{erro}</p>
         </div>
       ) : denuncias.length === 0 ? (
         <div className='denuncias__vazio'>
@@ -114,54 +185,16 @@ const Denuncias = () => {
         </div>
       ) : (
         <div className='denuncias__grid'>
-          {denuncias.map((d) => {
-            const status = statusConfig[d.status] || statusConfig.pendente
-            const icone = categoriaIcone[d.category] || 'fa-circle-exclamation'
-            const data = new Date(d.createdAt).toLocaleDateString('pt-BR')
-
-            return (
-              <div
-                key={d._id}
-                className='denuncias__card'
-                onClick={() => navigate(`/denuncias/${d._id}`)}
-              >
-                <div className='denuncias__card__img'>
-                  <img src={d.image} alt={d.title} />
-                  <span
-                    className='denuncias__card__status'
-                    style={{ color: status.cor, backgroundColor: status.bg }}
-                  >
-                    {status.label}
-                  </span>
-                </div>
-
-                <div className='denuncias__card__body'>
-                  <div className='denuncias__card__categoria'>
-                    <i className={`fa-solid ${icone}`}></i>
-                    <span>{categoriaLabel[d.category]}</span>
-                  </div>
-
-                  <h3>{d.title}</h3>
-                  <p>{d.description}</p>
-
-                  <div className='denuncias__card__meta'>
-                    <span><i className='fa-solid fa-location-dot'></i> {d.location?.neighborhood}</span>
-                    <span><i className='fa-regular fa-calendar'></i> {data}</span>
-                  </div>
-
-                  <div className='denuncias__card__footer'>
-                    <span><i className='fa-regular fa-user'></i> {d.userId?.name}</span>
-                    <div className='denuncias__card__acoes'>
-                      <span><i className='fa-regular fa-heart'></i> {d.likes}</span>
-                      <span><i className='fa-solid fa-retweet'></i> {d.reposts}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          {denuncias.map((denuncia) => (
+            <DenunciaCard
+              key={denuncia._id}
+              denuncia={denuncia}
+              onClick={() => navigate(`/denuncias/${denuncia._id}`)}
+            />
+          ))}
         </div>
       )}
+
     </div>
   )
 }

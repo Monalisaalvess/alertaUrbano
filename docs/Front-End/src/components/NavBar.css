@@ -1,22 +1,57 @@
-.NavBar{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(9, 2, 77, 0.366);
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 30px 60px 30px;
+.navbar__wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
+
+.NavBar{
+    background-color: #fff;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.697);
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px 40px 20px;
+
+}
+
+.txt__sub{
+    width: 100%;
+    background:#1541bb;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.efeito{
+    display: inline-flex;
+    animation: marquee 10s linear infinite;
+    gap:60rem;
+}
+
+.efeito p{
+    color: white;
+    font-weight: 600;
+    padding-right: 40px;
+}
+
+@keyframes marquee{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-33.33%);
+    }
+}
+
 .NavBar ul{
     display: flex;
     flex-direction: row;
-    gap: 70px;
+    gap: 30px;
     list-style: none;
-    padding: 3px;
+    padding: 7px;
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1.1rem;
     font-family: "Poppins";
 }
 
@@ -27,22 +62,18 @@
     font-weight: 600;
 }
 
-
-
-
 .NavBar ul li:hover{
     color: #1541bb;
     transform: translateY(-3px);
 }
 
-/* linha animada */
 .NavBar ul li::after{
     content: "";
     position: absolute;
     left: 0;
-    bottom: -8px;
+    bottom: -2px;
     width: 0%;
-    height: 2px;
+    height: 1px;
     background: #1541bb;
     border-radius: 10px;
     transition: width 0.3s ease;
@@ -52,9 +83,3 @@
     width: 100%;
 }
 
-.NavBar h2{
-    font-size: 1.8rem;
-    color: #1541bb;
-    font-family: "Playfair Display";
-    font-weight: 600;
-}

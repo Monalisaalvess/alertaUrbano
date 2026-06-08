@@ -3,6 +3,7 @@ import './Footer.css'
 
 const Footer = () => {
   return (
+    <>
     <footer className='footer'>
 
         <div className="navbar__footer">
@@ -36,7 +37,11 @@ const Footer = () => {
             </ul>
         </div>
 
-    </footer>
+      </footer>
+      <div className="copy">
+          <p>2026 &copy;</p>
+        </div>
+        </>
   )
 }
 
