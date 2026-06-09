@@ -1,7 +1,6 @@
 const Report = require('../models/Report');
 const User = require('../models/User');
 
-// GET 
 const getAllReports = async (req, res) => {
   try {
     const { neighborhood, category, status, page = 1, limit = 10 } = req.query;
@@ -36,7 +35,6 @@ const getAllReports = async (req, res) => {
   }
 };
 
-// PUT 
 const updateReportStatus = async (req, res) => {
   try {
     const { status, adminComment } = req.body;
@@ -70,7 +68,6 @@ const updateReportStatus = async (req, res) => {
   }
 };
 
-// GET 
 const getDetailedStats = async (req, res) => {
   try {
     const [
@@ -115,7 +112,6 @@ const getDetailedStats = async (req, res) => {
   }
 };
 
-// GET 
 const getAllUsers = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
@@ -142,7 +138,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// DELETE 
+ 
 const deleteReport = async (req, res) => {
   try {
     const report = await Report.findById(req.params.id);
@@ -151,8 +147,11 @@ const deleteReport = async (req, res) => {
       return res.status(404).json({ error: 'Reclamação não encontrada' });
     }
 
+    if (report.image){
+      const publicId = report.image.split('/').pop().split('.')[0];
+      await cloudinary.uploader.destroy(publicId);
+    }
     await report.deleteOne();
-
     res.json({ message: 'Reclamação removida com sucesso' });
   } catch (err) {
     res.status(500).json({ error: err.message });

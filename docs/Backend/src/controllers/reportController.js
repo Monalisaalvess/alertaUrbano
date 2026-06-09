@@ -1,6 +1,6 @@
 const Report = require('../models/Report');
 
-// GET 
+
 const getAllReports = async (req, res) => {
   try {
     const { neighborhood, category, status } = req.query;
@@ -20,7 +20,7 @@ const getAllReports = async (req, res) => {
   }
 };
 
-// GET
+
 const getHighlights = async (req, res) => {
   try {
     const mostLiked = await Report.find()
@@ -39,7 +39,6 @@ const getHighlights = async (req, res) => {
   }
 };
 
-// GET 
 const getStats = async (req, res) => {
   try {
     const total = await Report.countDocuments();
@@ -68,7 +67,6 @@ const getStats = async (req, res) => {
   }
 };
 
-// GET 
 const getReportById = async (req, res) => {
   try {
     const report = await Report.findById(req.params.id)
@@ -85,12 +83,8 @@ const getReportById = async (req, res) => {
   }
 };
 
-// POST
 const createReport = async (req, res) => {
   try {
-    console.log('Body:', req.body)
-    console.log('File:', req.file)
-    console.log('User:', req.user)
 
     const { title, description, category, address, neighborhood } = req.body
 
@@ -115,7 +109,6 @@ const createReport = async (req, res) => {
   }
 };
 
-// PUT 
 const likeReport = async (req, res) => {
   try {
     const report = await Report.findById(req.params.id);
@@ -142,7 +135,6 @@ const likeReport = async (req, res) => {
   }
 };
 
-// PUT 
 const repostReport = async (req, res) => {
   try {
     const report = await Report.findById(req.params.id);
@@ -167,8 +159,7 @@ const repostReport = async (req, res) => {
   }
 };
 
-// GET
-const getUserReports = async (req, res) => {
+const getUserReports = async (req, res) => { //tem q melhorar so n sei oq
   try {
     const reports = await Report.find({ userId: req.params.userId })
       .populate('userId', 'name avatar')

@@ -25,14 +25,13 @@ const sendVerificationEmail = async (email, token) => {
     to: email,
     subject: 'Confirme seu email - alertaUrbano',
 
-    //supunheto q essas linhas estão erradas 
     html: ` 
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #16a34a;">Bem-vindo ao alertaUrbano!</h2>
+        <h2 style="color: #030f48;">Bem-vindo ao alertaUrbano!</h2>
             <p>Clique no botão abaixo para confirmar seu email:</p>
         
         <a href="${verificationUrl}" 
-          style="display: inline-block; padding: 12px 24px; background-color: #16a34a; 
+          style="display: inline-block; padding: 12px 24px; background-color: #030f48; 
           color: white; text-decoration: none; border-radius: 6px; margin: 16px 0;">
           Confirmar Email
         </a>
@@ -43,10 +42,16 @@ const sendVerificationEmail = async (email, token) => {
   });
 };
 
-// POST
 const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+
+        if(!name || !email || !password){
+          return res.status(00).json({error:'Nome, email e senha são obrigatórios'})
+        }
+        if(password.length < 6){
+          return res.status(400).json({error: 'Senha deve ter pelo menos 6 caracteres'})
+        }
 
         const existingUser = await User.findOne({ email });
 
@@ -75,8 +80,6 @@ const register = async (req, res) => {
   }
 };
 
-
-// GET
 const verifyEmail = async (req, res) => {
   try {
     const { token } = req.params;
@@ -100,8 +103,6 @@ const verifyEmail = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-// POST 
 
 const login = async (req, res) => {
   try {
@@ -138,7 +139,6 @@ const login = async (req, res) => {
   }
 };
 
-// GET
 const getMe = async (req, res) => {
   try {
     res.json({
