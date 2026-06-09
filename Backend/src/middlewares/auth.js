@@ -1,6 +1,3 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-
 const authMiddleware = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
@@ -18,10 +15,10 @@ const authMiddleware = async (req, res, next) => {
     }
 
     if (!user.isVerified) {
-      return res.status(403).json({ error: 'Email não verificado. Confirme seu email para continuar.' });
+      return res.status(403).json({ error: 'Email não verificado.' });
     }
 
-    req.user = user;
+    req.user = user; // <- dentro da função, não fora!
     next();
   } catch (err) {
     if (err.name === 'TokenExpiredError') {
@@ -30,23 +27,3 @@ const authMiddleware = async (req, res, next) => {
     return res.status(401).json({ error: 'Token inválido' });
   }
 };
-
-const adminMiddleware = (req, res, next) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Acesso restrito a administradores' });
-  }
-  next();
-};
-
-const generateToken = (user) => {
-  return jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRES_IN }
-  );
-};
-
-req.user = { _id: decoded.id, role: decoded.role };
-next();
-
-module.exports = { authMiddleware, adminMiddleware };
