@@ -47,7 +47,7 @@ const register = async (req, res) => {
         const { name, email, password } = req.body;
 
         if(!name || !email || !password){
-          return res.status(00).json({error:'Nome, email e senha são obrigatórios'})
+          return res.status(400).json({error:'Nome, email e senha são obrigatórios'})
         }
         if(password.length < 6){
           return res.status(400).json({error: 'Senha deve ter pelo menos 6 caracteres'})
