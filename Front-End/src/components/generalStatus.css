@@ -1,32 +1,31 @@
 .general__status {
-    padding: 2rem 15rem;
+    padding: 2rem 12rem 1rem;
     background-color: #fff;
-    border-top: 1px solid rgb(234, 234, 234);
 }
 
 .general__status h2 {
-    font-family: "Poppins";
     text-align: center;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: hsl(0, 0%, 15%);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .status__cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .status__card {
+    height:200px;
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 1.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
     border: 1px solid #e4e4e7;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     text-align: center;
@@ -34,6 +33,7 @@
 
 
 .status__card p {
+    padding-top:2rem;
     font-size: 0.95rem;
     color: #71717a;
     font-weight: 500;
@@ -46,7 +46,34 @@
     margin: 0;
 }
 
-.status__card--pendente  h3 { color: #f59e0b; }
-.status__card--analise   h3 { color: #3b82f6; }
-.status__card--resolvida h3 { color: #22c55e; }
-.status__card--duplicada h3 { color: #ef4444; }
+.status__card--pendente  h3 { color: #ffba00; }
+.status__card--analise   h3 { color: #0c266d; }
+.status__card--resolvida h3 { color: #0c3b2e; }
+
+@media (max-width: 1024px) {
+ .general__status { padding: 2rem 3rem 1rem;}
+}
+
+@media (max-width: 768px) {
+.general__status { padding: 2rem 1.5rem 1rem;}
+
+.general__status h2 { font-size: 1.4rem; margin-bottom: 1.2rem;}
+
+.status__cards { display: flex; grid-template-columns: 3fr;gap: 1.2rem;}
+
+.status__card {
+    height: auto; padding: 1.2rem;flex-direction: row; 
+    justify-content: space-between; align-items: center;gap: 1rem; }
+
+.status__card p {padding-top: 0; text-align: left; font-size: 1rem; }
+
+.status__card h3 {   font-size: 2rem;}
+}
+
+@media (max-width: 480px) {
+.status__cards{ display: flex;flex-direction: column;gap: 1rem;}
+
+.status__card p { padding-top: 0;font-size: 0.9rem; }
+
+.status__card h3 { font-size: 1.7rem;}
+}

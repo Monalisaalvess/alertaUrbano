@@ -285,20 +285,143 @@
     transform: none;
 }
 
-@media (max-width: 640px) {
-  .reclamacoes__header {
-    padding: 2rem 1.5rem;
+/* =========================
+   TABLETS GRANDES
+   ========================= */
+@media (max-width: 1024px) {
+
+  .reclamacoes__page {
+    padding: 6rem 2rem;
   }
 
-  .reclamacoes__header h1 {
-    font-size: 1.5rem;
+  .reclamacoes__container {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .reclamacoes__form {
-    padding: 1.5rem;
+    padding: 2rem;
+  }
+
+  .upload__preview img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .reclamacoes__page {
+    padding: 6rem 1.25rem 3rem;
+  }
+
+  .reclamacoes__header {
+    padding: 0 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .reclamacoes__header h1 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  .reclamacoes__header p {
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .reclamacoes__container {
+    padding: 0;
+  }
+
+  .reclamacoes__form {
+    padding: 1.75rem;
+    gap: 1.25rem;
   }
 
   .form__linha {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .upload__area {
+    padding: 2rem 1rem;
+  }
+
+  .upload__preview img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .reclamacoes__page {
+    padding: 5.5rem 0.75rem 2rem;
+  }
+
+  .reclamacoes__header {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .reclamacoes__header__badge {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+
+  .reclamacoes__header h1 {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .reclamacoes__header p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .reclamacoes__form {
+    padding: 1.25rem;
+    gap: 1rem;
+    border-radius: 8px;
+  }
+
+  .form__grupo label {
+    font-size: 0.75rem;
+  }
+
+  .form__grupo input,
+  .form__grupo select,
+  .form__grupo textarea {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .upload__area {
+    padding: 1.5rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .upload__area i {
+    font-size: 2rem;
+  }
+
+  .upload__area span {
+    font-size: 0.85rem;
+  }
+
+  .upload__preview img {
+    height: 180px;
+  }
+
+  .reclamacoes__form .btn__primary {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .form__erro,
+  .form__sucesso {
+    font-size: 0.8rem;
+    padding: 0.8rem;
   }
 }

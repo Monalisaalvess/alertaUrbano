@@ -5,9 +5,9 @@ import useAuth from '../hooks/useAuth'
 import './Profile.css'
 
 const STATUS_CONFIG = {
-  pendente:   { label: 'Pendente',   cor: '#f59e0b' },
-  em_analise: { label: 'Em análise', cor: '#3b82f6' },
-  resolvida:  { label: 'Resolvida',  cor: '#22c55e' },
+  pendente:   { label: 'Pendente',   cor: '#ffba00' },
+  em_analise: { label: 'Em análise', cor: '#0c266d' },
+  resolvida:  { label: 'Resolvida',  cor: '#0c3b2e' },
 }
 
 const CATEGORIA_ICONE = {

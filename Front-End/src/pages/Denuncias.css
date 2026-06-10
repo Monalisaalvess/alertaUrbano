@@ -395,42 +395,79 @@
   color: #e10000;
 }
 
+
 @media (max-width: 1024px) {
-  .denuncias__page,
-  .denuncia__page {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+
+.denuncias__page {padding: 6rem 2rem;}
+
+.denuncia__page { padding: 8rem 2rem;}
+
+.denuncia__container { gap: 1.5rem;}
+
+  .denuncia__conteudo {padding: 2rem 1.5rem;}
+
+.denuncias__grid {grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));}
 }
- 
+
+
 @media (max-width: 768px) {
-  .denuncias__page,
-  .denuncia__page {
-    padding: 2rem 1.5rem;
-  }
- 
-  .denuncia__container {
-    grid-template-columns: 1fr;
-  }
- 
-  .denuncia__imagem {
-    max-height: 260px;
-  }
- 
-  .denuncia__conteudo {
-    max-height: unset;
-    overflow-y: visible;
-    padding: 1.5rem;
-  }
- 
-  .denuncias__filtros {
-    flex-direction: column;
-    align-items: stretch;
-  }
- 
-  .denuncias__filtros select,
-  .denuncias__filtros input,
-  .denuncias__limpar {
-    width: 100%;
-  }
+
+.denuncias__page { padding: 5rem 1rem;}
+
+.denuncia__page { padding: 5rem 1rem;}
+
+.denuncias__header h1 { font-size: 1.7rem;}
+
+.denuncias__header p { font-size: 0.9rem; }
+
+.denuncias__filtros {flex-direction: column; align-items: stretch;}
+
+.denuncias__filtros select,.denuncias__filtros input,
+.denuncias__limpar { width: 100%;}
+
+.denuncia__container { grid-template-columns: 1fr;}
+
+.denuncia__imagem { max-height: 300px;}
+
+.denuncia__conteudo { max-height: none; overflow: visible; padding: 1.5rem;}
+
+.denuncias__grid {grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));}
+}
+
+
+@media (max-width: 480px) {
+
+.denuncias__page {   padding: 4.5rem 0.75rem; }
+
+.denuncia__page { padding: 4.5rem 0.75rem;}
+
+.denuncias__header h1 { font-size: 1.35rem;line-height: 1.3;}
+
+.denuncias__header p { font-size: 0.85rem; }
+
+.denuncias__container { padding: 0; }
+
+.denuncias__grid { grid-template-columns: 1fr; gap: 1rem; }
+
+.denuncias__card__img {  height: 160px;}
+
+.denuncias__card__body { padding: 1rem; }
+
+.denuncias__card__footer { flex-direction: column; gap: 0.8rem;  align-items: flex-start;}
+
+.denuncia__imagem { max-height: 220px;}
+
+.denuncia__conteudo { padding: 1rem; }
+
+.denuncia__titulo {  font-size: 1.1rem;}
+
+.denuncia__descricao { font-size: 0.9rem;}
+
+.denuncia__topo { flex-direction: column; align-items: flex-start; gap: 0.8rem;}
+
+.denuncia__acoes { flex-direction: column;}
+
+.denuncia__btn { width: 100%; justify-content: center;}
+
+.denuncia__voltar button { width: 100%; justify-content: center;}
 }

@@ -65,7 +65,7 @@
     transform: translateY(0);
 }
 
-.btn__secundary{
+.btn__secondary{
     display: inline-block;
     background-color: transparent;
     color: #000;
@@ -79,22 +79,22 @@
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.btn__secundary:hover {
+.btn__secondary:hover {
     background-color: #eaeaea;
     border-color: #d4d4d8;
     transform: translateY(-2px);
 }
 
-.btn__secundary:active {
+.btn__secondary:active {
     transform: translateY(0);
 }
 
 .oqRegistrar{
-    padding: 5px 15rem;
+    padding: 4px 12rem;
     display: flex;
     gap: 2rem;
     align-items: stretch;
-    margin-bottom: 8rem;
+    margin-bottom: 1rem;
 }
 
 .oqRegistrar div{
@@ -134,7 +134,7 @@
 }
 
 .mapa__container {
-    padding: 3rem 10rem;
+    padding: 1rem 8rem;
 }
 
 .mapa__container h2 {
@@ -143,7 +143,7 @@
     font-size: 1.9rem;
     font-weight: 700;
     color: hsl(0, 0%, 15%);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .mapa__wrapper {
@@ -204,23 +204,22 @@
 .dot--resolvida { background-color: #0c3b2e; }
 
 .complaints {
-    padding: 5rem 7rem;
+    padding: 4rem 6rem;
 }
 
 .complaints h2 {
-    font-family: "Poppins";
     text-align: center;
     font-size: 1.9rem;
     font-weight: 700;
     color: hsl(0, 0%, 15%);
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .complaints__tabs {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
-    margin-bottom:2rem;
+    margin-bottom:1.5rem;
     border-bottom: 1px solid #e4e4e7;
     padding-bottom: 0;
 }
@@ -253,86 +252,69 @@
     gap: 1.5rem;
 }
 
+/*responsivide*/
+
 @media (max-width: 1024px) {
-  .section__1,
-  .oqRegistrar,
-  .mapa__container,
-  .complaints {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+.section__1 {padding: 3rem; padding-top: 12rem; 
+             flex-direction: column; align-items: center; 
+             min-height: auto; gap: 2rem;}
+ 
+.section__text h1 {font-size: 3.55rem; text-align:center; }
+.section__text p { text-align:center; }
+
+.btn { align-items:center; padding-left:60px; top:2rem;}
+
+.oqRegistrar {padding: 2px 1rem;gap: 1rem;flex-wrap: wrap;}
+ 
+.oqRegistrar div {min-width: calc(2% - 2rem); margin: 2px; }
+ 
+.mapa__container {padding: 2rem 3rem;}
+ 
+.mapa__legenda ul {gap: 40px;}
+
+.complaints {padding: 3rem;}
 }
  
 @media (max-width: 768px) {
-  .section__1 {
-    flex-direction: column;
-    padding: 3rem 1.5rem;
-    min-height: auto;
-    text-align: center;
-    align-items: center;
-  }
+.section__1 { padding: 1.5rem; padding-top: 14rem; flex-direction: column; gap: 1.5rem;}
  
-  .section__text {
-    align-items: center;
-    max-width: 100%;
-  }
+.section__text h1 { font-size: 2.8rem;}
+
+.btn {flex-direction: row; gap: 10px; padding: 0; width: 100%;}
+.btn__primary,.btn__secundary { 
+        flex: 1; font-size: 15px;
+        text-align: center;
+        padding: 10px 0; 
+    }
  
-  .section__text h1 {
-    font-size: 3rem;
-  }
+.section__text p { font-size: 1rem; text-align:center; }
  
-  .section__1__image {
-    display: none;
-  }
+.oqRegistrar { padding: 4px 1.5rem; gap: 0.8rem; flex-wrap: wrap; }
  
-  .btn {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
+.oqRegistrar div { min-width: calc(2% - 0.8rem);flex: unset;}
  
-  .btn__primary,
-  .btn__secundary {
-    width: 100%;
-    text-align: center;
-  }
+.mapa__container { padding: 2rem 1.5rem;}
  
-  .oqRegistrar {
-    flex-wrap: wrap;
-    padding: 2rem 1.5rem;
-  }
+.mapa__container h2 {font-size: 1.4rem;margin-bottom: 1.5rem;}
  
-  .oqRegistrar div {
-    min-width: calc(50% - 0.6rem);
-    flex: none;
-  }
+.mapa {height: 320px;}
  
-  .mapa__wrapper {
-    flex-direction: column;
-  }
+.mapa__legenda ul { gap: 20px;flex-wrap: wrap;justify-content: center;}
  
-  .mapa {
-    height: 360px;
-  }
+.complaints {padding: 2rem 1.5rem;}
  
-  .mapa__legenda {
-    width: 100%;
-    min-width: unset;
-  }
+.complaints h2 {font-size: 1.4rem;}
  
-  .mapa__legenda ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
- 
-  .mapa__container,
-  .complaints {
-    padding: 2.5rem 1.5rem;
-  }
- 
-  .complaints__list {
-    grid-template-columns: 1fr;
-  }
+.complaints__list {grid-template-columns: 1fr;}
 }
+
+@media (max-width: 480px) {
+.section__text h1 {font-size: 2.2rem; padding-top:4rem;}
  
+.oqRegistrar div {min-width: 30%;}
+ 
+.tab {font-size: 0.82rem;padding: 0.5rem 0.8rem;}
+}
+
+
+
