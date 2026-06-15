@@ -28,7 +28,6 @@ const Home = () => {
         const res  = await reportService.getHighlights()
         const data = res.data
 
-        // tab 0 = mais curtidas, tab 1 = mais republicadas
         const lista = tabAtiva === 0 ? data.mostLiked : data.mostReposted
         setReclamacoes(lista)
       } catch (err) {
@@ -39,7 +38,7 @@ const Home = () => {
     }
 
     buscarDestaques()
-  }, [tabAtiva]) // rebusca sempre que trocar de tab
+  }, [tabAtiva]) 
 
   return (
     <div className='home'>
