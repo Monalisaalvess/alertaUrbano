@@ -152,7 +152,7 @@ const deleteReport = async (req, res) => {
       await cloudinary.uploader.destroy(publicId);
     }
     await report.deleteOne();
-    res.json({ message: 'Reclamação removida com sucesso' });
+    res.json({ message: 'Reclamação removida com sucesso.' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
