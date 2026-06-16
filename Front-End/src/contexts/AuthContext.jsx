@@ -3,8 +3,8 @@ import { createContext, useState, useEffect, useCallback } from 'react'
 export const AuthContext = createContext()
 
 const   STORAGE_KEYS = {
-    token:'alertaUrbano.token',
-    user :'alertaUrbano.user',
+    token:'alertaUrbano_token',
+    user :'alertaUrbano_user',
 }
 
 export const AuthProvider = ({ children }) => {
