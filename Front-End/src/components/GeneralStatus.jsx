@@ -36,9 +36,9 @@ const useCountUp = (target, duration = 1500) => {
       }
       fetchStats()
     }, [])
-    const pendente   = useCountUp(stats.pendente)
-    const em_analise = useCountUp(stats.em_analise)
-    const resolvida  = useCountUp(stats.resolvida)
+    const pendentes   = useCountUp(stats.pendentes)
+    const analise = useCountUp(stats.analise)
+    const resolvidas  = useCountUp(stats.resolvidas)
     
   return (
     <div className='general__status'>
@@ -47,17 +47,17 @@ const useCountUp = (target, duration = 1500) => {
 
         <div className="status__card status__card--pendente">
           <p>Pendentes</p>
-          <h3>{pendente}</h3>
+          <h3>{pendentes}</h3>
         </div>
 
         <div className="status__card status__card--analise">
           <p>Em análise</p>
-          <h3>{em_analise}</h3>
+          <h3>{analise}</h3>
         </div>
 
         <div className="status__card status__card--resolvida">
           <p>Resolvidas</p>
-          <h3>{resolvida}</h3>
+          <h3>{resolvidas}</h3>
         </div>
 
       </div>
