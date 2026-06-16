@@ -3,8 +3,8 @@ import { createContext, useState, useEffect, useCallback } from 'react'
 export const AuthContext = createContext()
 
 const   STORAGE_KEYS = {
-    token:'alertaUrbano',
-    user :'alertaUrbano',
+    token:'alertaUrbano.token',
+    user :'alertaUrbano.user',
 }
 
 export const AuthProvider = ({ children }) => {
@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(()=>{
         try{
-        const storedToken = localStorage.getItem('STORAGE_KEYS_token')
-        const storedUser  = localStorage.getItem('STORAGE_KEYS_user')
+        const storedToken = localStorage.getItem('STORAGE_KEYS.token')
+        const storedUser  = localStorage.getItem('STORAGE_KEYS.user')
 
         if (storedToken && storedUser) {
             setToken(storedToken)
@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     }, [] )
     const isAuthenticated = !!token
     const isAdmin = user?.role === 'admin'
+
 
     return (
         <AuthContext.Provider value={{
