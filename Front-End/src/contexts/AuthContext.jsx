@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(()=>{
         try{
-        const storedToken = localStorage.getItem('STORAGE_KEYS.token')
-        const storedUser  = localStorage.getItem('STORAGE_KEYS.user')
+        const storedToken = localStorage.getItem(STORAGE_KEYS.token)
+        const storedUser  = localStorage.getItem(STORAGE_KEYS.user)
 
         if (storedToken && storedUser) {
             setToken(storedToken)
@@ -34,14 +34,14 @@ export const AuthProvider = ({ children }) => {
     const login = useCallback((userData, userToken) => {
         setUser (userData)
         setToken(userToken)
-        localStorage.setItem('STORAGE_KEYS.token', userToken)
-        localStorage.setItem('STORAGE_KEYS.user', JSON.stringify(userData))
+        localStorage.setItem(STORAGE_KEYS.token, userToken)
+        localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(userData))
     }, [])
     const logout = useCallback (() => {
         setUser(null)
         setToken(null)
-        localStorage.removeItem('STORAGE_KEYS.token')
-        localStorage.removeItem('STORAGE_KEYS.user')    
+        localStorage.removeItem(STORAGE_KEYS.token)
+        localStorage.removeItem(STORAGE_KEYS.user)    
     }, [] )
     const isAuthenticated = !!token
     const isAdmin = user?.role === 'admin'
