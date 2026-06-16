@@ -1,0 +1,28 @@
+.about{ 
+    height: 99vh;
+    padding: 14rem;
+    text-align: center;
+}
+.txt__about {
+    max-width: 46rem;
+    margin: 0 auto;
+}
+.about h1{
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #0c266d;
+    font-family: "Playfair Display";
+    margin-top: 1rem;
+}
+.about p{
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: "Poppins";
+    margin-bottom: 1rem;
+}
+.about span{
+    color: #0c266d;
+    font-weight: bold;
+}

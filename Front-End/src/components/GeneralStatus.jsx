@@ -28,7 +28,7 @@ const useCountUp = (target, duration = 1500) => {
     useEffect(() => {
       const fetchStats = async () => {
         try {
-          const res = await reportService.getStats() 
+          const res = await reportService.getStats()
           setStats (res.data.byStatus)
         } catch (err) {
           console.error('Erro ao buscar stats:', err)
@@ -36,6 +36,7 @@ const useCountUp = (target, duration = 1500) => {
       }
       fetchStats()
     }, [])
+
     const pendentes   = useCountUp(stats.pendentes)
     const analise = useCountUp(stats.analise)
     const resolvidas  = useCountUp(stats.resolvidas)

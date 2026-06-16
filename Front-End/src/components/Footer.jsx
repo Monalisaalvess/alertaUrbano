@@ -24,8 +24,8 @@ const Footer = () => {
           <h3>Institucional</h3>
           <ul>
             <li><Link to='/about'>Sobre o projeto</Link></li>
-            <li><Link to='/termos'>Termos de uso</Link></li>
-            <li><Link to='/politica'>Privacidade</Link></li>
+            <li><Link to='/em-breve'>Termos de uso</Link></li>
+            <li><Link to='/em-breve'>Privacidade</Link></li>
           </ul>
         </div>
 
