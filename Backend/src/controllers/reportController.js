@@ -42,9 +42,9 @@ const getHighlights = async (req, res) => {
 const getStats = async (req, res) => {
   try {
     const total = await Report.countDocuments();
-    const pendente = await Report.countDocuments({ status: 'pendente' });
-    const em_analise = await Report.countDocuments({ status: 'em_analise' });
-    const resolvida = await Report.countDocuments({ status: 'resolvida' })
+    const pendente = await Report.countDocuments({ status: 'pendentes' });
+    const em_analise = await Report.countDocuments({ status: 'analise' });
+    const resolvida = await Report.countDocuments({ status: 'resolvidas' })
 
     const byCategory = await Report.aggregate([
       { $group: { _id: '$category', total: { $sum: 1 } } },
@@ -58,7 +58,7 @@ const getStats = async (req, res) => {
 
     res.json({
       total,
-      byStatus: { pendente, em_analise, resolvida, duplicada },
+      byStatus: { pendentes, analise, resolvidas },
       byCategory,
       byNeighborhood,
     });

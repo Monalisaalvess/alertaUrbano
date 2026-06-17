@@ -45,8 +45,8 @@ const ReportSchema = new mongoose.Schema({
 
     status: {
       type: String,
-      enum: ['pendente', 'em_analise', 'resolvida', 'duplicada'],
-      default: 'pendente',
+      enum: ['pendentes', 'analise', 'resolvidas', ],
+      default: 'pendentes',
     },
 
     likes: {
