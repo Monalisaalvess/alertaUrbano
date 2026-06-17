@@ -2,7 +2,7 @@ const app = require('./src/app');
 const connectDB = require('./src/config/database');
 require('dotenv').config();
 
-console.log('🚀 Iniciando servidor...'); // adiciona isso
+console.log('Iniciando servidor...'); // adiciona isso
 console.log('PORT:', process.env.PORT);   // e isso
 console.log('MONGO_URI:', process.env.MONGO_URI ? 'EXISTE' : 'UNDEFINED'); // e isso
 
