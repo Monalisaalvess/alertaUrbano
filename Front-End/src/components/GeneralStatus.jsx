@@ -30,6 +30,11 @@ const useCountUp = (target, duration = 1500) => {
         try {
           const res = await reportService.getStats()
           setStats (res.data.byStatus)
+          const pendentes  = byStatus.find(s => s._id === 'pendente')?.total   || 0
+      const analise    = byStatus.find(s => s._id === 'em_analise')?.total || 0
+      const resolvidas = byStatus.find(s => s._id === 'resolvida')?.total  || 0
+
+      setStats({ pendentes, analise, resolvidas })
         } catch (err) {
           console.error('Erro ao buscar stats:', err)
         }

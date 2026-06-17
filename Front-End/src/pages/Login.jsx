@@ -170,7 +170,7 @@ const Login = () => {
             </button>
           )}
 
-          <button type='submit' className='btn__primary' disabled={loading}>
+          <button type='submit' className='form_btn__primary' disabled={loading}>
             {loading ? 'Aguarde...' : isLogin ? 'Entrar' : 'Criar conta'}
           </button>
         </form>
