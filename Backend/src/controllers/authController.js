@@ -151,6 +151,10 @@ const getMe = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+
+  console.log('EMAIL_USER:', process.env.EMAIL_USER);
+console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'EXISTE' : 'UNDEFINED');
+console.log('API_URL:', process.env.API_URL);
 };
 
 module.exports = { register, verifyEmail, login, getMe };
