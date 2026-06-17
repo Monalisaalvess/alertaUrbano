@@ -10,6 +10,10 @@ const generateToken = (id) => {
 };
 
 const sendVerificationEmail = async (email, token) => {
+   console.log('EMAIL_USER:', process.env.EMAIL_USER);
+  console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'EXISTE' : 'UNDEFINED');
+  console.log('API_URL:', process.env.API_URL);
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -55,9 +59,9 @@ const register = async (req, res) => {
 
         const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
+        if (existingUser) {
       return res.status(400).json({ error: 'Email já cadastrado' });
-    }
+        }
 
         const verificationToken = crypto.randomBytes(32).toString('hex');
         const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
@@ -76,6 +80,7 @@ console.log("Email enviado com suceso");
       message: 'Cadastro realizado com sucesso. Verifique seu email para ativar sua conta.',
     });
   } catch (err) {
+    console.log("erro register:", err)
     res.status(500).json({ error: err.message });
   }
 };
@@ -153,9 +158,6 @@ const getMe = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 
-  console.log('EMAIL_USER:', process.env.EMAIL_USER);
-console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'EXISTE' : 'UNDEFINED');
-console.log('API_URL:', process.env.API_URL);
 };
 
 module.exports = { register, verifyEmail, login, getMe };
