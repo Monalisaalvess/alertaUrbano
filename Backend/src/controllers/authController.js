@@ -69,9 +69,9 @@ const register = async (req, res) => {
         verificationToken,
         verificationTokenExpires,
     });
-
+console.log("Criando usuário...");
     await sendVerificationEmail(email, verificationToken);
-
+console.log("Email enviado com suceso");
     res.status(201).json({
       message: 'Cadastro realizado com sucesso. Verifique seu email para ativar sua conta.',
     });
@@ -149,6 +149,7 @@ const getMe = async (req, res) => {
       avatar: req.user.avatar,
     });
   } catch (err) {
+    console.error("ERRO AQUI:", err); 
     res.status(500).json({ error: err.message });
   }
 
