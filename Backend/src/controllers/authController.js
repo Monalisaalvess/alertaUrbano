@@ -413,4 +413,4 @@ const getMe = async (req, res) => {
 
 };
 
-module.exports = { register, verifyEmail, login, getMe };
+module.exports = { register, verifyEmail, login, getMe };*/
