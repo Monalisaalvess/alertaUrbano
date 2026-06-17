@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "cloudinary": "^2.10.0"
+    "cloudinary": "^2.10.0",
+    "resend": "^6.14.0"
   }
 }
