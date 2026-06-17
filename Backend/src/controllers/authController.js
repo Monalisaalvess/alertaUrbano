@@ -1,7 +1,7 @@
 const { Resend } = require('resend')
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
+//const nodemailer = require('nodemailer');
 const User = require('../models/User');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
