@@ -1,0 +1,45 @@
+estrutur atual
+Backend/
+│
+├── src/
+│
+│   ├── config/
+│   │   ├── database.js
+│   │   └── cloudinary.js
+│   │
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── adminController.js
+│   │   └── reportController.js
+│   │
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── adminService.js
+│   │   └── reportService.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   └── Report.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── adminRoutes.js
+│   │   └── reportRoutes.js
+│   │
+│   ├── middlewares/
+│   │   ├── auth.js
+│   │   └── errorHandler.js
+│   │
+│   │
+│   │
+│   └── app.js
+│
+├── scripts/
+│   └── createAdmin.js
+│
+├── .env
+├── .gitignore
+├── server.js
+└── package.json
+
+

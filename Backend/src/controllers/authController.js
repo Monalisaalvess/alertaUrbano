@@ -1,10 +1,10 @@
-const { Resend } = require('resend')
+//const { Resend } = require('resend')
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-//const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const User = require('../models/User');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+//const resend = new Resend(process.env.RESEND_API_KEY);
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -16,7 +16,7 @@ const sendVerificationEmail = async (email, token) => {
   const verificationUrl = `${process.env.API_URL}/api/auth/verify/${token}`;
 
  await resend.emails.send({
-    from: 'alertaUrbano <onboarding@resend.dev>',
+    from: 'alertaurbanocrato@gmail.com',
     to: email, 
     subject: 'Confirme seu email - alertaUrbano',
     html: `
